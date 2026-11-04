@@ -1,6 +1,6 @@
 # 5. Scope of the first version
 
-Status: proposed, pending the maintainer's confirmation
+Status: accepted (2026-11-04)
 
 ## Decision
 
