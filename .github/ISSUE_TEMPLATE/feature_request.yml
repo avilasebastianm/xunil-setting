@@ -1,0 +1,14 @@
+name: Feature request
+description: Suggest a setting, panel or module
+labels: [enhancement]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What do you want to do?
+    validations:
+      required: true
+  - type: textarea
+    id: scope
+    attributes:
+      label: Which systems, compositors or components does it apply to?
