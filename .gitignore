@@ -1,0 +1,7 @@
+/target/
+/.idea/
+/packaging/*.pkg.tar.*
+/packaging/src/
+/packaging/pkg/
+*.mo
+lcov.info
