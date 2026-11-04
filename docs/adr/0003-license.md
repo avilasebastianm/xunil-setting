@@ -1,6 +1,6 @@
 # 3. License: GPL-3.0-or-later
 
-Status: proposed, pending the maintainer's confirmation
+Status: accepted (2026-11-04)
 
 ## Context
 

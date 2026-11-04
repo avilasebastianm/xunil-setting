@@ -1,6 +1,6 @@
-# 2. Project name
+# 2. Project name: Xunil Setting
 
-Status: proposed, pending a final name
+Status: accepted (2026-11-04)
 
 ## Context
 
@@ -10,11 +10,14 @@ mark beginning with the letters ARCH needs permission, and discourages names suc
 
 ## Decision
 
-`arch-setting` is a provisional name, taken from the repository. It must be resolved before the first
-public release, either with a name of our own described as "Settings for Arch Linux", or with
-permission requested at trademarks@archlinux.org.
+The project is called **Xunil Setting**, and its package and binary are `xunil-setting`. The
+application ID is `io.github.avilasebastianm.XunilSetting`. On Arch-specific pages it can be described
+as "settings for Arch Linux".
 
 ## Consequences
 
-Renaming later changes the application ID, the package and the repository, which is cheap now and
-expensive after the first release. The icon must not suggest any endorsement by Arch Linux.
+- The name needs no permission under that policy. On 2026-11-04 it was free in the official
+  repositories and the AUR. No trademark search was done.
+- The application ID is tied to a personal GitHub account, and changing it after the first release is
+  expensive.
+- The icon must not suggest any endorsement by Arch Linux.
