@@ -947,8 +947,12 @@ dependencies = [
  "gtk4",
  "libadwaita",
  "tempfile",
+ "xunil-setting-core",
 ]
 
 [[package]]
 name = "xunil-setting-core"
 version = "0.1.0"
+dependencies = [
+ "tempfile",
+]
