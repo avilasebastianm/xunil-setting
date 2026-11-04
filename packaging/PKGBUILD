@@ -1,0 +1,39 @@
+# Builds the working tree that contains this file, for development and CI.
+# The AUR package will download a release tarball instead (roadmap phase 4).
+
+pkgname=arch-setting
+pkgver=0.1.0
+pkgrel=1
+pkgdesc='Settings center for Arch Linux'
+arch=('x86_64')
+url='https://github.com/avilasebastianm/arch-setting'
+license=('GPL-3.0-or-later')
+depends=('gcc-libs' 'glib2' 'glibc' 'gtk4' 'hicolor-icon-theme' 'libadwaita')
+makedepends=('cargo' 'gettext')
+options=('!lto')
+
+_app_id=io.github.avilasebastianm.ArchSetting
+_root="$(realpath "$startdir/..")"
+
+build() {
+  cd "$_root"
+  export CARGO_TARGET_DIR="$srcdir/target"
+  export ARCH_SETTING_LOCALE_DIR=/usr/share/locale
+  cargo build --release --locked --package arch-setting
+}
+
+package() {
+  cd "$_root"
+  install -Dm755 "$srcdir/target/release/arch-setting" "$pkgdir/usr/bin/arch-setting"
+  install -Dm644 "data/$_app_id.desktop" "$pkgdir/usr/share/applications/$_app_id.desktop"
+  install -Dm644 "data/$_app_id.metainfo.xml" "$pkgdir/usr/share/metainfo/$_app_id.metainfo.xml"
+  install -Dm644 "data/icons/hicolor/scalable/apps/$_app_id.svg" \
+    "$pkgdir/usr/share/icons/hicolor/scalable/apps/$_app_id.svg"
+
+  local po lang
+  for po in po/*.po; do
+    lang="$(basename "$po" .po)"
+    install -dm755 "$pkgdir/usr/share/locale/$lang/LC_MESSAGES"
+    msgfmt --check -o "$pkgdir/usr/share/locale/$lang/LC_MESSAGES/arch-setting.mo" "$po"
+  done
+}
