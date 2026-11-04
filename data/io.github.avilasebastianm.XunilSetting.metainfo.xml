@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>io.github.avilasebastianm.XunilSetting</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-3.0-or-later</project_license>
+  <name>Xunil Setting</name>
+  <summary>Change the settings of your system</summary>
+  <summary xml:lang="es">Cambiá los ajustes de tu sistema</summary>
+  <description>
+    <p>
+      A graphical settings center for Arch Linux that works on any installation, whichever
+      desktop you use. It only shows the settings that apply to your system.
+    </p>
+    <p xml:lang="es">
+      Un centro de ajustes gráfico para Arch Linux que funciona en cualquier instalación, sea cual
+      sea tu escritorio. Solo muestra los ajustes que corresponden a tu sistema.
+    </p>
+  </description>
+  <launchable type="desktop-id">io.github.avilasebastianm.XunilSetting.desktop</launchable>
+  <developer id="io.github.avilasebastianm">
+    <name>xunil-setting contributors</name>
+  </developer>
+  <url type="homepage">https://github.com/avilasebastianm/xunil-setting</url>
+  <url type="bugtracker">https://github.com/avilasebastianm/xunil-setting/issues</url>
+  <content_rating type="oars-1.1"/>
+  <releases>
+    <release version="0.1.0" type="development" date="2026-11-04"/>
+  </releases>
+</component>

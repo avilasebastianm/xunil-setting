@@ -1,0 +1,86 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main, develop]
+
+permissions:
+  contents: read
+
+jobs:
+  branch-and-commits:
+    name: Git flow and commit format
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Check the branch and the commits
+        env:
+          BASE_REF: ${{ github.base_ref }}
+          HEAD_REF: ${{ github.head_ref }}
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: scripts/check-pr.sh
+
+  quality:
+    name: Format, lint, tests and coverage
+    runs-on: ubuntu-latest
+    container: archlinux:latest
+    steps:
+      - name: Install dependencies
+        run: |
+          pacman -Syu --noconfirm --needed appstream cargo-deny cargo-llvm-cov desktop-file-utils \
+            gcc git gettext gtk4 libadwaita pkgconf python rustup ttf-dejavu xorg-server-xvfb \
+            xorg-xauth
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
+      - name: Install the toolchain
+        run: rustup toolchain install
+      - run: cargo fmt --all --check
+      - run: cargo clippy --workspace --all-targets --locked -- -D warnings
+      - run: cargo deny --locked check
+      - name: Validate the package files
+        run: |
+          desktop-file-validate data/*.desktop
+          appstreamcli validate --no-net data/*.metainfo.xml
+          for po in po/*.po; do msgfmt --check -o /dev/null "$po"; done
+      - name: Unit tests and coverage of the core
+        run: >
+          cargo llvm-cov --package xunil-setting-core --locked --fail-under-lines 80
+          --lcov --output-path lcov.info
+      - name: New lines must be covered by tests
+        if: github.event_name == 'pull_request'
+        env:
+          BASE_REF: ${{ github.base_ref }}
+        run: |
+          python -m venv "$RUNNER_TEMP/venv"
+          "$RUNNER_TEMP/venv/bin/pip" install --quiet 'diff-cover==9.*'
+          "$RUNNER_TEMP/venv/bin/diff-cover" lcov.info \
+            --compare-branch "origin/$BASE_REF" --fail-under 80
+      - name: Interface tests
+        run: scripts/ui-tests.sh
+
+  package:
+    name: Build, install and open the package on a clean Arch
+    runs-on: ubuntu-latest
+    container: archlinux:latest
+    steps:
+      - name: Install the build tools
+        run: pacman -Syu --noconfirm --needed base-devel git namcap
+      - uses: actions/checkout@v4
+      - name: Build the package as an unprivileged user
+        run: |
+          useradd --create-home builder
+          echo 'builder ALL=(ALL) NOPASSWD: ALL' > /etc/sudoers.d/builder
+          chown -R builder "$GITHUB_WORKSPACE"
+          cd packaging
+          sudo -u builder makepkg --syncdeps --noconfirm
+      - name: Check the PKGBUILD and the package
+        run: namcap packaging/PKGBUILD packaging/*.pkg.tar.*
+      - name: Install and open it without Hyprland or Waybar
+        run: scripts/check-installed.sh packaging/*.pkg.tar.*

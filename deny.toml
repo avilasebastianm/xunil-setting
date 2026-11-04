@@ -1,0 +1,18 @@
+[advisories]
+yanked = "deny"
+
+[licenses]
+allow = ["Apache-2.0", "GPL-3.0-or-later", "MIT", "Unicode-3.0", "Unlicense"]
+exceptions = [
+    # Build-time dependency of the GTK bindings. Apache-2.0 is compatible with GPL-3.0.
+    { name = "target-lexicon", allow = ["Apache-2.0 WITH LLVM-exception"] },
+]
+
+[bans]
+multiple-versions = "warn"
+wildcards = "deny"
+allow-wildcard-paths = true
+
+[sources]
+unknown-registry = "deny"
+unknown-git = "deny"

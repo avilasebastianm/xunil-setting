@@ -1,0 +1,19 @@
+[package]
+name = "xunil-setting"
+description = "Settings center for Arch Linux"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+publish.workspace = true
+
+[dependencies]
+adw = { package = "libadwaita", version = "0.9", features = ["v1_5"] }
+gettext-rs = { version = "0.8", features = ["gettext-system"] }
+gtk = { package = "gtk4", version = "0.11", features = ["v4_14"] }
+
+[dev-dependencies]
+tempfile = "3"
+
+[lints]
+workspace = true

@@ -1,0 +1,14 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: xunil-setting\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: crates/xunil-setting/src/main.rs
+msgid "No panels yet"
+msgstr ""
+
+#: crates/xunil-setting/src/main.rs
+msgid "Panels will appear here as modules are added."
+msgstr ""
