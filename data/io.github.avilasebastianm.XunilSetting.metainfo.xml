@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component type="desktop-application">
-  <id>io.github.avilasebastianm.ArchSetting</id>
+  <id>io.github.avilasebastianm.XunilSetting</id>
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-3.0-or-later</project_license>
-  <name>Arch Setting</name>
+  <name>Xunil Setting</name>
   <summary>Change the settings of your system</summary>
   <summary xml:lang="es">Cambiá los ajustes de tu sistema</summary>
   <description>
@@ -16,12 +16,12 @@
       sea tu escritorio. Solo muestra los ajustes que corresponden a tu sistema.
     </p>
   </description>
-  <launchable type="desktop-id">io.github.avilasebastianm.ArchSetting.desktop</launchable>
+  <launchable type="desktop-id">io.github.avilasebastianm.XunilSetting.desktop</launchable>
   <developer id="io.github.avilasebastianm">
-    <name>arch-setting contributors</name>
+    <name>xunil-setting contributors</name>
   </developer>
-  <url type="homepage">https://github.com/avilasebastianm/arch-setting</url>
-  <url type="bugtracker">https://github.com/avilasebastianm/arch-setting/issues</url>
+  <url type="homepage">https://github.com/avilasebastianm/xunil-setting</url>
+  <url type="bugtracker">https://github.com/avilasebastianm/xunil-setting/issues</url>
   <content_rating type="oars-1.1"/>
   <releases>
     <release version="0.1.0" type="development" date="2026-11-04"/>

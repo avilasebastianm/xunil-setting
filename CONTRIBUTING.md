@@ -51,7 +51,7 @@ cargo test --workspace --locked
 scripts/ui-tests.sh
 ```
 
-- Logic goes in `arch-setting-core`, which must not depend on GTK.
+- Logic goes in `xunil-setting-core`, which must not depend on GTK.
 - No `unsafe` code.
 - External processes run with an argument list, never a shell command built from user text.
 - Files with secrets are created with mode 600, and secrets never reach the logs.

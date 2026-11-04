@@ -4,7 +4,7 @@ use std::env;
 use std::ffi::OsStr;
 use std::path::{Path, PathBuf};
 
-const APP_DIR: &str = "arch-setting";
+const APP_DIR: &str = "xunil-setting";
 
 /// Returns the application's configuration directory for the current user.
 ///
@@ -41,7 +41,7 @@ mod tests {
     fn uses_xdg_config_home_when_absolute() {
         assert_eq!(
             resolve(Some("/xdg"), Some("/home/user")),
-            Some(PathBuf::from("/xdg/arch-setting"))
+            Some(PathBuf::from("/xdg/xunil-setting"))
         );
     }
 
@@ -49,7 +49,7 @@ mod tests {
     fn falls_back_to_home_when_xdg_is_missing() {
         assert_eq!(
             resolve(None, Some("/home/user")),
-            Some(PathBuf::from("/home/user/.config/arch-setting"))
+            Some(PathBuf::from("/home/user/.config/xunil-setting"))
         );
     }
 
@@ -57,7 +57,7 @@ mod tests {
     fn ignores_empty_xdg_config_home() {
         assert_eq!(
             resolve(Some(""), Some("/home/user")),
-            Some(PathBuf::from("/home/user/.config/arch-setting"))
+            Some(PathBuf::from("/home/user/.config/xunil-setting"))
         );
     }
 
@@ -65,7 +65,7 @@ mod tests {
     fn ignores_relative_xdg_config_home() {
         assert_eq!(
             resolve(Some("relative/path"), Some("/home/user")),
-            Some(PathBuf::from("/home/user/.config/arch-setting"))
+            Some(PathBuf::from("/home/user/.config/xunil-setting"))
         );
     }
 

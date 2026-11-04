@@ -5,4 +5,4 @@ This project follows the
 
 Be respectful, assume good faith, and keep discussions about the work. Harassment of any kind is not
 accepted. Report problems privately to the maintainers through
-[GitHub security advisories](https://github.com/avilasebastianm/arch-setting/security/advisories/new).
+[GitHub security advisories](https://github.com/avilasebastianm/xunil-setting/security/advisories/new).

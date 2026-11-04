@@ -16,6 +16,6 @@ compile-time checks.
 
 - The prototype is a behavioral reference only: its logic and tests must be rewritten.
 - Rust has no stable ABI, so separately installed modules cannot simply be loaded as libraries. The
-  brief's `arch-setting-hyprland` style of package needs its own decision in phase 1. The options
+  brief's `xunil-setting-hyprland` style of package needs its own decision in phase 1. The options
   are helper processes, a C ABI, or modules compiled into the application and enabled at runtime.
 - Workspace code forbids `unsafe`. Direct use of a C library needs an exception recorded in an ADR.

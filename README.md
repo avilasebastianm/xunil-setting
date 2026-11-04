@@ -1,10 +1,9 @@
-# arch-setting
+# Xunil Setting
 
 A graphical settings center for Arch Linux, in the spirit of GNOME Settings, that works on any
 installation whichever desktop you use.
 
 > **Status:** early development. The application only opens an empty window so far.
-> "arch-setting" is a provisional name; see [ADR 0002](docs/adr/0002-project-name.md).
 > This project is not affiliated with or endorsed by Arch Linux.
 
 ## Principles
@@ -20,7 +19,7 @@ installation whichever desktop you use.
 You need `rustup`, `gtk4`, `libadwaita` and `gettext`.
 
 ```sh
-cargo run -p arch-setting
+cargo run -p xunil-setting
 ```
 
 To build and install the package:

@@ -51,7 +51,7 @@ jobs:
           for po in po/*.po; do msgfmt --check -o /dev/null "$po"; done
       - name: Unit tests and coverage of the core
         run: >
-          cargo llvm-cov --package arch-setting-core --locked --fail-under-lines 80
+          cargo llvm-cov --package xunil-setting-core --locked --fail-under-lines 80
           --lcov --output-path lcov.info
       - name: New lines must be covered by tests
         if: github.event_name == 'pull_request'

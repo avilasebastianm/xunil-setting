@@ -23,8 +23,8 @@ trap 'rm -rf "$home"' EXIT
 output="$(
   env -i PATH="$PATH" HOME="$home" XDG_CONFIG_HOME="$home/config" GDK_BACKEND=x11 \
     GSETTINGS_BACKEND=memory GTK_A11Y=none DBUS_SESSION_BUS_ADDRESS=unix:path=/nonexistent \
-    ARCH_SETTING_SMOKE_TEST=1 \
-    timeout 30 xvfb-run --auto-servernum -- /usr/bin/arch-setting 2>&1
+    XUNIL_SETTING_SMOKE_TEST=1 \
+    timeout 30 xvfb-run --auto-servernum -- /usr/bin/xunil-setting 2>&1
 )"
 echo "$output"
 

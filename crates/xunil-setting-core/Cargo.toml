@@ -1,6 +1,6 @@
 [package]
-name = "arch-setting-core"
-description = "UI-independent logic for arch-setting"
+name = "xunil-setting-core"
+description = "UI-independent logic for xunil-setting"
 version.workspace = true
 edition.workspace = true
 license.workspace = true

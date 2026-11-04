@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: arch-setting\n"
+"Project-Id-Version: xunil-setting\n"
 "PO-Revision-Date: 2026-11-04 00:00+0000\n"
-"Last-Translator: arch-setting contributors\n"
+"Last-Translator: xunil-setting contributors\n"
 "Language-Team: Spanish\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
@@ -10,10 +10,10 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: crates/arch-setting/src/main.rs
+#: crates/xunil-setting/src/main.rs
 msgid "No panels yet"
 msgstr "Todavía no hay paneles"
 
-#: crates/arch-setting/src/main.rs
+#: crates/xunil-setting/src/main.rs
 msgid "Panels will appear here as modules are added."
 msgstr "Los paneles van a aparecer acá a medida que se agreguen módulos."

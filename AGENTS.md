@@ -9,6 +9,6 @@ The ones that matter most:
 - Never kill processes by name, and never run a program you have not read, not even with `--help`.
 - Never overwrite a user's configuration without showing the change and offering a way to undo it.
 - Assume nothing about the machine: no fixed paths, monitors, users, themes or dotfiles.
-- Keep logic in `arch-setting-core`, without GTK.
+- Keep logic in `xunil-setting-core`, without GTK.
 - Work on a `feature/*` or `bugfix/*` branch from `develop`, with Conventional Commits.
 - Add tests with every change, and run the commands listed in `CONTRIBUTING.md`.

@@ -1,10 +1,10 @@
 [Desktop Entry]
 Type=Application
-Name=Arch Setting
+Name=Xunil Setting
 Comment=Change the settings of your system
 Comment[es]=Cambiá los ajustes de tu sistema
-Exec=arch-setting
-Icon=io.github.avilasebastianm.ArchSetting
+Exec=xunil-setting
+Icon=io.github.avilasebastianm.XunilSetting
 Terminal=false
 Categories=GTK;Settings;
 Keywords=settings;preferences;configuration;

@@ -1,5 +1,5 @@
 [package]
-name = "arch-setting"
+name = "xunil-setting"
 description = "Settings center for Arch Linux"
 version.workspace = true
 edition.workspace = true

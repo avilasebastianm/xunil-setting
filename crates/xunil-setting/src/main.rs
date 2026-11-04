@@ -1,4 +1,4 @@
-//! Graphical entry point of arch-setting.
+//! Graphical entry point of xunil-setting.
 
 use std::time::Duration;
 
@@ -6,14 +6,14 @@ use adw::prelude::*;
 use gettextrs::{bind_textdomain_codeset, bindtextdomain, gettext, textdomain};
 use gtk::glib;
 
-const APP_ID: &str = "io.github.avilasebastianm.ArchSetting";
-const APP_NAME: &str = "Arch Setting";
-const GETTEXT_DOMAIN: &str = "arch-setting";
-const LOCALE_DIR: &str = match option_env!("ARCH_SETTING_LOCALE_DIR") {
+const APP_ID: &str = "io.github.avilasebastianm.XunilSetting";
+const APP_NAME: &str = "Xunil Setting";
+const GETTEXT_DOMAIN: &str = "xunil-setting";
+const LOCALE_DIR: &str = match option_env!("XUNIL_SETTING_LOCALE_DIR") {
     Some(dir) => dir,
     None => "/usr/share/locale",
 };
-const SMOKE_TEST_VAR: &str = "ARCH_SETTING_SMOKE_TEST";
+const SMOKE_TEST_VAR: &str = "XUNIL_SETTING_SMOKE_TEST";
 const SMOKE_TEST_DURATION: Duration = Duration::from_millis(500);
 
 fn main() -> glib::ExitCode {

@@ -1,12 +1,12 @@
 [workspace]
 resolver = "3"
-members = ["crates/arch-setting", "crates/arch-setting-core"]
+members = ["crates/xunil-setting", "crates/xunil-setting-core"]
 
 [workspace.package]
 version = "0.1.0"
 edition = "2024"
 license = "GPL-3.0-or-later"
-repository = "https://github.com/avilasebastianm/arch-setting"
+repository = "https://github.com/avilasebastianm/xunil-setting"
 publish = false
 
 [workspace.lints.rust]

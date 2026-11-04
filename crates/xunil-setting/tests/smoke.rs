@@ -1,7 +1,7 @@
 //! Opens the real window on a display server without a screen.
 //!
 //! Run it through `scripts/ui-tests.sh`, which starts that server. It is ignored by default, and
-//! it refuses to run without `ARCH_SETTING_HEADLESS`, so it never opens a window in a real session.
+//! it refuses to run without `XUNIL_SETTING_HEADLESS`, so it never opens a window in a real session.
 
 use std::process::{Command, Stdio};
 use std::thread::sleep;
@@ -13,13 +13,13 @@ const TIMEOUT: Duration = Duration::from_secs(30);
 #[ignore = "needs a headless display server: run scripts/ui-tests.sh"]
 fn main_window_opens_without_errors() {
     assert!(
-        std::env::var_os("ARCH_SETTING_HEADLESS").is_some(),
+        std::env::var_os("XUNIL_SETTING_HEADLESS").is_some(),
         "run this test through scripts/ui-tests.sh"
     );
 
     let home = tempfile::tempdir().expect("temporary HOME");
-    let binary = std::env::var_os("ARCH_SETTING_TEST_BINARY")
-        .unwrap_or_else(|| env!("CARGO_BIN_EXE_arch-setting").into());
+    let binary = std::env::var_os("XUNIL_SETTING_TEST_BINARY")
+        .unwrap_or_else(|| env!("CARGO_BIN_EXE_xunil-setting").into());
 
     let mut child = Command::new(binary)
         .env_clear()
@@ -34,7 +34,7 @@ fn main_window_opens_without_errors() {
         .env("XDG_DATA_HOME", home.path().join("data"))
         .env("XDG_CACHE_HOME", home.path().join("cache"))
         .env("XDG_STATE_HOME", home.path().join("state"))
-        .env("ARCH_SETTING_SMOKE_TEST", "1")
+        .env("XUNIL_SETTING_SMOKE_TEST", "1")
         .stdout(Stdio::null())
         .stderr(Stdio::piped())
         .spawn()
