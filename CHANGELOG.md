@@ -9,3 +9,5 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 - Empty application window, translated into Spanish.
 - Package, CI and project documentation.
+- Module registry with detection of binaries and environment variables.
+- Sidebar with the panels of the active modules, starting with a placeholder for Hyprland.

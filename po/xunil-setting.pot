@@ -12,3 +12,11 @@ msgstr ""
 #: crates/xunil-setting/src/main.rs
 msgid "Panels will appear here as modules are added."
 msgstr ""
+
+#: crates/xunil-setting/src/main.rs
+msgid "The settings of this panel will appear here."
+msgstr ""
+
+#: crates/xunil-setting/src/main.rs
+msgid "Settings"
+msgstr ""
