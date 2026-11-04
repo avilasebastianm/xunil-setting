@@ -3,15 +3,21 @@
 //! Run it through `scripts/ui-tests.sh`, which starts that server. It is ignored by default, and
 //! it refuses to run without `XUNIL_SETTING_HEADLESS`, so it never opens a window in a real session.
 
+use std::fs;
+use std::os::unix::fs::PermissionsExt;
+use std::path::Path;
 use std::process::{Command, Stdio};
 use std::thread::sleep;
 use std::time::{Duration, Instant};
 
 const TIMEOUT: Duration = Duration::from_secs(30);
+const HYPRLAND_VAR: &str = "HYPRLAND_INSTANCE_SIGNATURE";
 
-#[test]
-#[ignore = "needs a headless display server: run scripts/ui-tests.sh"]
-fn main_window_opens_without_errors() {
+/// Runs the application until it exits by itself, and returns what it printed to stdout.
+///
+/// `PATH` only contains `bin`, so what the test finds does not depend on the machine. The
+/// application only looks programs up, so nothing in `bin` ever runs.
+fn run_application(bin: &Path, extra_env: &[(&str, &str)]) -> String {
     assert!(
         std::env::var_os("XUNIL_SETTING_HEADLESS").is_some(),
         "run this test through scripts/ui-tests.sh"
@@ -23,7 +29,7 @@ fn main_window_opens_without_errors() {
 
     let mut child = Command::new(binary)
         .env_clear()
-        .env("PATH", std::env::var_os("PATH").unwrap_or_default())
+        .env("PATH", bin)
         .env("DISPLAY", std::env::var_os("DISPLAY").unwrap_or_default())
         .env("GDK_BACKEND", "x11")
         .env("GSETTINGS_BACKEND", "memory")
@@ -35,7 +41,8 @@ fn main_window_opens_without_errors() {
         .env("XDG_CACHE_HOME", home.path().join("cache"))
         .env("XDG_STATE_HOME", home.path().join("state"))
         .env("XUNIL_SETTING_SMOKE_TEST", "1")
-        .stdout(Stdio::null())
+        .envs(extra_env.iter().copied())
+        .stdout(Stdio::piped())
         .stderr(Stdio::piped())
         .spawn()
         .expect("application starts");
@@ -60,4 +67,42 @@ fn main_window_opens_without_errors() {
     for marker in ["CRITICAL", "WARNING", "ERROR"] {
         assert!(!stderr.contains(marker), "{marker} in stderr: {stderr}");
     }
+    String::from_utf8_lossy(&output.stdout).into_owned()
+}
+
+fn create_executable(dir: &Path, name: &str) {
+    let path = dir.join(name);
+    fs::write(&path, "").expect("create the file");
+    fs::set_permissions(&path, fs::Permissions::from_mode(0o755)).expect("set the mode");
+}
+
+#[test]
+#[ignore = "needs a headless display server: run scripts/ui-tests.sh"]
+fn opens_without_panels_on_a_bare_system() {
+    let bin = tempfile::tempdir().expect("temporary directory");
+
+    let stdout = run_application(bin.path(), &[]);
+
+    assert!(!stdout.contains("panel:"), "unexpected panels: {stdout}");
+}
+
+#[test]
+#[ignore = "needs a headless display server: run scripts/ui-tests.sh"]
+fn hides_the_hyprland_panel_when_a_requirement_is_missing() {
+    let bin = tempfile::tempdir().expect("temporary directory");
+
+    let stdout = run_application(bin.path(), &[(HYPRLAND_VAR, "test")]);
+
+    assert!(!stdout.contains("panel:"), "unexpected panels: {stdout}");
+}
+
+#[test]
+#[ignore = "needs a headless display server: run scripts/ui-tests.sh"]
+fn shows_the_hyprland_panel_when_it_is_detected() {
+    let bin = tempfile::tempdir().expect("temporary directory");
+    create_executable(bin.path(), "hyprctl");
+
+    let stdout = run_application(bin.path(), &[(HYPRLAND_VAR, "test")]);
+
+    assert!(stdout.contains("panel: hyprland"), "panels: {stdout}");
 }
