@@ -7,3 +7,4 @@ pub mod config_edit;
 pub mod module;
 pub mod modules;
 pub mod paths;
+pub mod polkit;
