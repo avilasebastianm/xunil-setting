@@ -8,6 +8,7 @@ repository.workspace = true
 publish.workspace = true
 
 [dependencies]
+gio = "0.22"
 similar = "3.2.1"
 tempfile = "3.27.0"
 

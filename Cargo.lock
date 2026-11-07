@@ -973,6 +973,7 @@ dependencies = [
 name = "xunil-setting-core"
 version = "0.1.0"
 dependencies = [
+ "gio",
  "similar",
  "tempfile",
 ]

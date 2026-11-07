@@ -8,3 +8,4 @@ pub mod module;
 pub mod modules;
 pub mod paths;
 pub mod polkit;
+pub mod timedate;
